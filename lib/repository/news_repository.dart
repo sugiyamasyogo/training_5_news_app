@@ -41,7 +41,7 @@ class NewsRepository {
       final responseBody = response?.body;
       results = await News.fromJson(jsonDecode(responseBody!)).articles;
     } else {
-      throw Exception("Faild to load news");
+      throw Exception("Failed to load news");
     }
     return results;
   }

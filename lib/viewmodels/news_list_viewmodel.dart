@@ -20,7 +20,7 @@ class NewsListViewModel extends ChangeNotifier {
   bool get isLoading => _isLoading;
 
   List<Article> _article = [];
-  List<Article> get article => _article;
+  List<Article> get articles => _article;
 
 
   Future<void>getNews(

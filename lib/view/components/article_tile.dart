@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:training_5_news_app/models/model/news_model.dart';
+import 'package:training_5_news_app/view/components/article_tile_desc.dart';
+import 'package:training_5_news_app/view/components/image_from_url.dart';
 
 class ArticleTile extends StatelessWidget {
   final Article article;
@@ -26,17 +28,20 @@ class ArticleTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                  child: Container(),
+                flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ImageFromUrl(imageUrl: article.urlToImage),
+                  ),
               ),
               Expanded(
                   flex:3,
                   //TODO
-                  child: Column(
-                    children: [
-                      Text(article.title ?? ""),
-                      Text(article.publishDate ?? ""),
-                      Text(article.description ?? ""),
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: ArticleTileDesc(
+                      article: article,
+                    ),
                   ),
               ),
             ],

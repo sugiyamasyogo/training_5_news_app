@@ -63,8 +63,8 @@ class HeadLinePage extends StatelessWidget {
     await viewModel.getHeadLines(searchType: SearchType.HEAD_LINE);
   }
 
-  _openArticleWebPage(BuildContext context, article) {
-    print("HeadLinePage._openArticleWebPage:${article.url}");
-  }
+  // _openArticleWebPage(BuildContext context, article) {
+  //   print("HeadLinePage._openArticleWebPage:${article.url}");
+  // }
 
 }

@@ -49,7 +49,7 @@ class HeadLineItem extends StatelessWidget {
               left: 30.0,
               right: 30.0,
               child:LazyLoadText(
-                text: article.title.toString(),
+                text: article.title.toString(),//TODO ここ合ってんのかな？
                 pageVisibility: pageVisibility,
               ),
             ),

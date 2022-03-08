@@ -1,9 +1,11 @@
 import 'dart:convert';
-
+import 'package:training_5_news_app/main.dart';
 import 'package:training_5_news_app/models/model/news_model.dart';
 import '../data/category_info.dart';
 import '../data/search_type.dart';
 import 'package:http/http.dart' as http;
+
+import 'package:training_5_news_app/util/extensions.dart';
 
 class NewsRepository {
 
@@ -39,10 +41,23 @@ class NewsRepository {
     }
     if (response?.statusCode == 200) {
       final responseBody = response?.body;
-      results = await News.fromJson(jsonDecode(responseBody!)).articles;
+      //results = await News.fromJson(jsonDecode(responseBody!)).articles;
+      results = await insertAndReadFromDB(jsonDecode(responseBody!));
     } else {
       throw Exception("Failed to load news");
     }
     return results;
+  }
+
+  Future <List<Article>> insertAndReadFromDB(responseBody) async {
+    final dao = myDatabase.newsDao;
+    final articles = News.fromJson(responseBody).articles;
+
+    //TODO Webから取得した記事リスト（Dartのモデルクラス：Article）をDBのテーブルクラス（Article）に変換してDBに登録
+   final articleRecords =  await dao.insertAndReadFromDB(articles.toArticleRecords(articles));
+
+    //TODO DBから取得したデータをモデルクラスに再変換して返す
+    return articleRecords.toArticles(articleRecords);
+
   }
 }

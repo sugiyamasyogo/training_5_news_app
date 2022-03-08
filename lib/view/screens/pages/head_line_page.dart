@@ -5,6 +5,7 @@ import 'package:training_5_news_app/view/components/page_transformer.dart';
 import 'package:training_5_news_app/viewmodels/head_line_viewmodel.dart';
 
 import '../../../data/search_type.dart';
+import '../news_web_page_screen.dart';
 
 class HeadLinePage extends StatelessWidget {
   const HeadLinePage({Key? key}) : super(key: key);
@@ -34,13 +35,15 @@ class HeadLinePage extends StatelessWidget {
                         itemCount: model.articles.length,
                         itemBuilder: (context, index) {
                           final article = model.articles[index];
-                          final pageVisibility = pageVisibilityResolver.resolvePageVisibility(index);
-                          final visibleFraction = pageVisibility.visibleFraction;
+                          final pageVisibility = pageVisibilityResolver
+                              .resolvePageVisibility(index);
+                          final visibleFraction =
+                              pageVisibility.visibleFraction;
                           return HeadLineItem(
                               article: model.articles[index],
                               pageVisibility: pageVisibility,
-                              onArticleClicked: (article) => _openArticleWebPage(context, article)
-                          );
+                              onArticleClicked: (article) =>
+                                  _openArticleWebPage(context, article));
                         });
                   },
                 );
@@ -62,9 +65,15 @@ class HeadLinePage extends StatelessWidget {
     final viewModel = context.read<HeadLineViewModel>();
     await viewModel.getHeadLines(searchType: SearchType.HEAD_LINE);
   }
-
-  // _openArticleWebPage(BuildContext context, article) {
-  //   print("HeadLinePage._openArticleWebPage:${article.url}");
-  // }
-
+///Pageクリック後、画面遷移処理
+  _openArticleWebPage(BuildContext context, article) {
+    print("HeadLinePage._openArticleWebPage:${article.url}");
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => NewsWebPageScreen(
+          article: article,
+        ),
+      ),
+    );
+  }
 }

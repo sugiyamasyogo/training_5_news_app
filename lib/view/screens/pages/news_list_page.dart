@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:training_5_news_app/data/category_info.dart';
 import 'package:training_5_news_app/data/search_type.dart';
 import 'package:training_5_news_app/view/components/article_tile.dart';
+import 'package:training_5_news_app/view/screens/news_web_page_screen.dart';
 import 'package:training_5_news_app/viewmodels/news_list_viewmodel.dart';
 
 import '../../../models/model/news_model.dart';
@@ -103,9 +104,15 @@ class NewsListPage extends StatelessWidget {
     print("NewsListPage.getCategoryNews / category:${category.nameJp}");
   }
 
-  //TODO
+  ///Pageクリック後、画面遷移処理
   _openArticleWebPage(Article article, BuildContext context) {
     print("_openArticleWebPage:${article.url}");
-
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => NewsWebPageScreen(
+          article: article,
+        ),
+      ),
+    );
   }
 }

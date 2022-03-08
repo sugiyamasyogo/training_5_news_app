@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:training_5_news_app/models/db/database.dart';
 import 'package:training_5_news_app/view/screens/home_screen.dart';
 import 'package:training_5_news_app/style/style.dart';
 import 'package:training_5_news_app/viewmodels/head_line_viewmodel.dart';
 import 'package:training_5_news_app/viewmodels/news_list_viewmodel.dart';
 
+late MyDatabase myDatabase;
+
 void main() {
+  myDatabase = MyDatabase();
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider<NewsListViewModel>(
